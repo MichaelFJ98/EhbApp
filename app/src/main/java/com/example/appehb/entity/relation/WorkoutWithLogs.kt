@@ -10,7 +10,7 @@ data class WorkoutWithLogs(
     val workout: Workout,
     @Relation(
         parentColumn = "id",
-        entityColumn = "w_id"
+        entityColumn = "workoutId"
     )
     val logs: List<Log>
 )

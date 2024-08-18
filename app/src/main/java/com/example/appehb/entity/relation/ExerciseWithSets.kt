@@ -11,7 +11,7 @@ data class ExerciseWithSets(
     val exercise: Exercise,
     @Relation(
         parentColumn = "id",
-        entityColumn = "e_id"
+        entityColumn = "exerciseId"
     )
     val sets: List<Set>
 )

@@ -9,7 +9,7 @@ data class LogWithSets(
     @Embedded val log: Log,
     @Relation(
         parentColumn = "id",
-        entityColumn = "l_id",
+        entityColumn = "logId",
     )
     val sets: List<Set>
 )
