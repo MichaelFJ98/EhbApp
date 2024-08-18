@@ -45,6 +45,6 @@ class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>
     }
 
     override fun getItemCount(): Int {
-        return 0
+        return differ.currentList.size
     }
 }
