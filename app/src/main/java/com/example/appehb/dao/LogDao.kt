@@ -19,7 +19,7 @@ interface LogDao {
     @Delete
     fun delete(log: Log)
     @Query("SELECT * FROM log WHERE id = :id")
-    fun getLogById(id: Int): Flow<Workout>
+    fun getLogById(id: Int): Flow<Log>
     @Transaction
     @Query("SELECT * FROM log WHERE id = :id")
     fun getSetsByLogId(id: Int): Flow<List<LogWithSets>>

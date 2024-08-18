@@ -14,6 +14,6 @@ interface SetDao {
     fun upsert(set: Set)
     @Delete
     fun delete(set: Set)
-    @Query("SELECT * FROM log WHERE id = :id")
+    @Query("SELECT * FROM `set` WHERE id = :id")
     fun getSetById(id: Int): Flow<Set>
 }
