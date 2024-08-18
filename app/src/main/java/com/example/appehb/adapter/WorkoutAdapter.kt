@@ -1,41 +1,53 @@
 package com.example.appehb.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appehb.entity.Workout
-import com.example.appehb.R
-class WorkoutAdapter(private val context: Context) : BaseAdapter()  {
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var workouts: List<Workout> = emptyList()
+import com.example.appehb.databinding.WorkoutLayoutAdapterBinding
+import com.example.appehb.ui.workout.fragment.WorkoutListFragmentDirections
 
-    fun setWorkouts(workouts: List<Workout>){
-        this.workouts = workouts
+class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> () {
+    class WorkoutViewHolder(val itemBinding: WorkoutLayoutAdapterBinding) :
+            RecyclerView.ViewHolder(itemBinding.root)
+
+    private val differCallback =
+        object : DiffUtil.ItemCallback<Workout>() {
+            override fun areItemsTheSame(oldItem: Workout, newItem: Workout): Boolean {
+                return oldItem.id == newItem.id &&
+                        oldItem.name == newItem.name
+            }
+
+            override fun areContentsTheSame(oldItem: Workout, newItem: Workout): Boolean {
+                return oldItem == newItem
+            }
+        }
+
+    val differ = AsyncListDiffer(this, differCallback)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
+        return WorkoutViewHolder(
+            WorkoutLayoutAdapterBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
-    override fun getCount(): Int {
-        return workouts.size
+
+    override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
+        val currentWorkout = differ.currentList[position]
+
+        holder.itemBinding.tvWorkoutTitle.text = currentWorkout.name
+
+        holder.itemView.setOnClickListener { view ->
+            val direction = WorkoutListFragmentDirections.fabAddWorkout()
+            view.findNavController().navigate(direction)
+        }
     }
 
-    override fun getItem(position: Int): Any {
-        return workouts[position]
-    }
-
-    override fun getItemId(position: Int): Long {
-        return workouts[position].id.toLong()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        parent.parent
-        val view: View = convertView ?: inflater.inflate(R.layout.workout_item, parent, false)
-
-        val workoutNameTextView: TextView = view.findViewById(R.id.workout_item_name)
-        val workout = workouts[position]
-
-        workoutNameTextView.text = workout.name
-
-        return view
+    override fun getItemCount(): Int {
+        return differ.currentList.size
     }
 }

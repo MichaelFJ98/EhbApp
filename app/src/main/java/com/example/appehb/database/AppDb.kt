@@ -14,7 +14,7 @@ import com.example.appehb.entity.Set
 import com.example.appehb.entity.Workout
 @Database(
     entities = [Workout::class, Exercise::class, Log::class, Set::class],
-    version = 3,
+    version = 6,
 )
 abstract class AppDb: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
@@ -25,18 +25,19 @@ abstract class AppDb: RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE: AppDb? = null
-
-        fun getDb(context: Context): AppDb{
-            return INSTANCE ?: synchronized(this){
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDb::class.java,
-                    "app_db"
-                ).fallbackToDestructiveMigration().build()
-                INSTANCE = instance
-                instance
-            }
+        private val LOCK = Any()
+        operator fun invoke(context: Context) = INSTANCE ?:
+        synchronized(LOCK) {
+            INSTANCE ?:
+            createDatabase(context).also { INSTANCE = it }
         }
+
+        private fun createDatabase(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                AppDb::class.java,
+                "app_db"
+            ).fallbackToDestructiveMigration().build()
     }
 
 

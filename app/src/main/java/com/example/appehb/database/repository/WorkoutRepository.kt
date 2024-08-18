@@ -2,19 +2,27 @@ package com.example.appehb.database.repository
 
 import androidx.annotation.WorkerThread
 import com.example.appehb.dao.WorkoutDao
+import com.example.appehb.database.AppDb
 import com.example.appehb.entity.Workout
 import kotlinx.coroutines.flow.Flow
 
-class WorkoutRepository(private val workoutDao: WorkoutDao) {
+class WorkoutRepository(private val db: AppDb) {
 
-    val allWorkouts: Flow<List<Workout>> = workoutDao.getAllWorkouts()
-    @WorkerThread
-    fun upsertWorkout(workout: Workout){
-        workoutDao.upsert(workout)
-    }
+    suspend fun insertWorkout(workout: Workout) =
+        db.workoutDao().insertWorkout(workout)
 
-    @WorkerThread
-    fun deleteWorkout(workout: Workout){
-        workoutDao.delete(workout)
-    }
+    suspend fun updateWorkout(workout: Workout) =
+        db.workoutDao().updateWorkout(workout)
+
+    suspend fun deleteWorkout(workout: Workout) =
+        db.workoutDao().delete(workout)
+
+    fun getWorkouts() =
+        db.workoutDao().getAllWorkouts()
+
+    fun getWorkout(id: Int) =
+        db.workoutDao().getWorkoutById(id)
+    fun getExercisesForWorkout(id: Int) =
+        db.workoutDao().getExercisesForWorkout(id)
+
 }

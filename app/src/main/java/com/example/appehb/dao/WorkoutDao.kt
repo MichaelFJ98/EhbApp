@@ -1,27 +1,31 @@
 package com.example.appehb.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import androidx.room.Upsert
+import androidx.room.Update
 import com.example.appehb.entity.Workout
 import com.example.appehb.entity.relation.WorkoutWithExercises
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WorkoutDao {
-    @Upsert
-    fun upsert(workout: Workout)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertWorkout(workout: Workout)
+    @Update
+    suspend fun updateWorkout(workout: Workout)
     @Delete
-    fun delete(workout: Workout)
+    suspend fun delete(workout: Workout)
     @Query("SELECT * FROM workout ORDER BY name")
-    fun getAllWorkouts(): Flow<List<Workout>>
+    fun getAllWorkouts(): LiveData<List<Workout>>
 
     @Query("SELECT * FROM workout WHERE id = :id")
-    fun getWorkoutById(id: Int): Workout
+    fun getWorkoutById(id: Int): LiveData<Workout>
     @Transaction
     @Query("SELECT * FROM workout WHERE id = :id")
-    fun getExercisesForWorkout(id: Int): List<WorkoutWithExercises>
+    fun getExercisesForWorkout(id: Int): LiveData<List<WorkoutWithExercises>>
 
 }

@@ -3,23 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/lvWorkout">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.appehb.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/lvWorkout"
+        android:name="com.example.appehb.ui.workout.fragment.WorkoutListFragment"
+        android:label="@string/title_workouts"
+        tools:layout="@layout/workout_list_fragment">
+
+        <action
+            android:id="@+id/fabAddWorkout"
+            app:destination="@id/workoutItemFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.appehb.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/workoutItemFragment"
+        android:label="@string/title_workout"
+        tools:layout="@layout/workout_item_fragment" >
+        <action
+            android:id="@+id/fabAddExercise"
+            app:destination="@id/addExerciseFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.appehb.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/addExerciseFragment"
+        android:label="@string/add_exercise"
+        tools:layout="@layout/add_exercise_fragment" >
+        <action
+            android:id="@+id/fabAddExercise"
+            app:destination="@id/workoutItemFragment" />
+    </fragment>
+
 </navigation>
