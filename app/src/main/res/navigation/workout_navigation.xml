@@ -38,6 +38,9 @@
         <action
             android:id="@+id/fabAddExercise"
             app:destination="@id/addExerciseFragment" />
+        <action
+            android:id="@+id/editExercise"
+            app:destination="@id/editExercise" />
 
         <argument
             android:name="workout"
@@ -55,4 +58,17 @@
             app:destination="@id/workoutItemFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/editExercise"
+        android:label="@string/edit_exercise"
+        android:name="com.example.appehb.ui.exercise.fragment.EditExerciseFragment"
+        tools:layout="@layout/edit_exercise_fragment" >
+        <action
+            android:id="@+id/fabAddExercise"
+            app:destination="@id/workoutItemFragment" />
+        <argument
+            android:name="exercise"
+            app:argType="com.example.appehb.entity.Exercise"
+            app:nullable="false"/>
+    </fragment>
 </navigation>
