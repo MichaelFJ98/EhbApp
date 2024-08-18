@@ -7,14 +7,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appehb.databinding.ExerciseLayoutAdapterBinding
-import com.example.appehb.databinding.WorkoutLayoutAdapterBinding
 import com.example.appehb.entity.Exercise
-import com.example.appehb.entity.Workout
-import com.example.appehb.ui.exercise.fragment.AddExerciseFragmentDirections
-import com.example.appehb.ui.exercise.fragment.EditExerciseFragment
 import com.example.appehb.ui.workout.fragment.WorkoutFragmentDirections
 
-class ExerciseAdapter :  RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> () {
+class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> () {
     class ExerciseViewHolder(val itemBinding: ExerciseLayoutAdapterBinding) :
             RecyclerView.ViewHolder(itemBinding.root)
 

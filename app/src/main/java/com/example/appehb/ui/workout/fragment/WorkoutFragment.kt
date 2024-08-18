@@ -9,9 +9,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.appehb.MainActivity
 import com.example.appehb.R
+import com.example.appehb.adapter.ExerciseAdapter
 
 import com.example.appehb.adapter.WorkoutAdapter
 import com.example.appehb.databinding.WorkoutItemFragmentBinding
+import com.example.appehb.entity.Exercise
 import com.example.appehb.entity.Workout
 import com.example.appehb.ui.workout.WorkoutViewModel
 
@@ -22,7 +24,7 @@ class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
     private val argument: WorkoutFragmentArgs by navArgs()
     private lateinit var currentWorkout: Workout
     private lateinit var workoutViewModel: WorkoutViewModel
-    private lateinit var workoutAdapter: WorkoutAdapter
+    private lateinit var exerciseAdapter: ExerciseAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,11 +45,11 @@ class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         workoutViewModel = (activity as MainActivity).workoutViewModel
-        //setUpRecyclerView()
+        setUpRecyclerView()
     }
 
     private fun setUpRecyclerView(){
-        workoutAdapter = WorkoutAdapter()
+        exerciseAdapter = ExerciseAdapter()
 
         binding.recyclerViewExercises.apply {
             layoutManager = StaggeredGridLayoutManager(
@@ -55,19 +57,21 @@ class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
                 StaggeredGridLayoutManager.VERTICAL
             )
             setHasFixedSize(true)
-            adapter = workoutAdapter
+            adapter = exerciseAdapter
         }
 
         activity?.let {
-            workoutViewModel.getWorkouts().observe(viewLifecycleOwner) { workout ->
-                workoutAdapter.differ.submitList(workout)
-                updateUI(workout)
+            currentWorkout.id?.let { id ->
+                workoutViewModel.getExercisesForWorkout(id).observe(viewLifecycleOwner) { workout ->
+                    exerciseAdapter.differ.submitList(workout[0].exercises)
+                    updateUI(workout[0].exercises)
+                }
             }
         }
     }
 
-    private fun updateUI(workouts: List<Workout>) {
-        if(workouts.isNotEmpty()) {
+    private fun updateUI(exercises: List<Exercise>) {
+        if(exercises.isNotEmpty()) {
             binding.noExercisesText.visibility = View.GONE
             binding.recyclerViewExercises.visibility = View.VISIBLE
         } else {
