@@ -8,7 +8,9 @@ import android.os.Looper
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -44,18 +46,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-/*        val navView: BottomNavigationView = binding.navView
-
-        val navController = findNavController(R.id.fragment_host)
+        val navView: BottomNavigationView = binding.navView
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_host) as NavHostFragment
+        val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.lvWorkout, R.id.image,
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)*/
-
+        navView.setupWithNavController(navController)
+        bottomNavItemChangeListener(navView, navController)
 
 
         initViewModelWorkout()
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         initViewModelLog()
         initViewModelSet()
     }
+
 
     private fun initViewModelWorkout() {
         val workoutRepository = WorkoutRepository(AppDb(this))
@@ -118,6 +121,16 @@ class MainActivity : AppCompatActivity() {
             this,
             viewModelProviderFactory,
         )[SetViewModel::class.java]
+    }
+
+    private fun bottomNavItemChangeListener(navView: BottomNavigationView, navController: NavController) {
+        navView.setOnItemSelectedListener { item ->
+            if (item.itemId != navView.selectedItemId) {
+                navController.popBackStack(item.itemId, inclusive = true, saveState = false)
+                navController.navigate(item.itemId)
+            }
+            true
+        }
     }
 
 }

@@ -41,10 +41,6 @@ class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
             findNavController().navigate(action)
         }
 
-        binding.toImageFrag.setOnClickListener {
-            val action = WorkoutListFragmentDirections.toImageFrag()
-            findNavController().navigate(action)
-        }
     }
 
     private fun setUpRecyclerView(){

@@ -18,11 +18,6 @@
         <action
             android:id="@+id/toWorkoutItem"
             app:destination="@id/workoutItemFragment" />
-        <action
-            android:id="@+id/toImageFrag"
-            app:destination="@id/image" />
-
-
     </fragment>
 
     <fragment
