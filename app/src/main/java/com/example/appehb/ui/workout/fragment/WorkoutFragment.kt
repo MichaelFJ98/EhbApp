@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.appehb.MainActivity
@@ -46,6 +47,16 @@ class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
         super.onViewCreated(view, savedInstanceState)
         workoutViewModel = (activity as MainActivity).workoutViewModel
         setUpRecyclerView()
+
+        binding.fabAddExercise.setOnClickListener {
+            val action = WorkoutFragmentDirections.fabAddExercise(currentWorkout)
+            view.findNavController().navigate(action)
+        }
+
+        binding.fabRemoveWorkout.setOnClickListener {
+            workoutViewModel.deleteWorkout(currentWorkout)
+            view.findNavController().navigateUp()
+        }
     }
 
     private fun setUpRecyclerView(){

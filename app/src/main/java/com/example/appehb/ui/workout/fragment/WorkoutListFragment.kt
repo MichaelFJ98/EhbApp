@@ -17,7 +17,6 @@ import com.example.appehb.entity.Workout
 import com.example.appehb.ui.workout.WorkoutViewModel
 
 class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
-
     private var _binding: WorkoutListFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var workoutViewModel: WorkoutViewModel
@@ -37,6 +36,10 @@ class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
         workoutViewModel = (activity as MainActivity).workoutViewModel
         setUpRecyclerView()
 
+        binding.fabAddWorkout.setOnClickListener {
+            val action = WorkoutListFragmentDirections.fabAddWorkout()
+            findNavController().navigate(action)
+        }
     }
 
     private fun setUpRecyclerView(){

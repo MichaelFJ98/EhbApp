@@ -14,7 +14,7 @@ import com.example.appehb.entity.Set
 import com.example.appehb.entity.Workout
 @Database(
     entities = [Workout::class, Exercise::class, Log::class, Set::class],
-    version = 7,
+    version = 8,
 )
 abstract class AppDb: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
