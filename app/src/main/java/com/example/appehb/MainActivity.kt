@@ -1,9 +1,17 @@
 package com.example.appehb
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.appehb.database.AppDb
 import com.example.appehb.database.repository.ExerciseRepository
 import com.example.appehb.database.repository.LogRepository
@@ -18,6 +26,10 @@ import com.example.appehb.ui.set.SetViewModel
 import com.example.appehb.ui.set.SetViewModelProvider
 import com.example.appehb.ui.workout.WorkoutViewModel
 import com.example.appehb.ui.workout.WorkoutViewModelProviderFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 /*        val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.mobile_navigation)
+        val navController = findNavController(R.id.fragment_host)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -43,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)*/
+
+
 
         initViewModelWorkout()
         initViewModelExercise()
@@ -105,4 +119,5 @@ class MainActivity : AppCompatActivity() {
             viewModelProviderFactory,
         )[SetViewModel::class.java]
     }
+
 }

@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">AppEhb</string>
     <string name="title_workouts">Workouts</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="tilte_logs">Logs</string>
+    <string name="title_Other">Other</string>
     <string name="title_workout">Workout</string>
     <string name="add_exercise">Add exercise</string>
     <string name="edit_exercise">Edit exercise</string>
     <string name="add_workout">Add workout</string>
+    <string name="image">Image</string>
 </resources>

@@ -18,9 +18,18 @@
         <action
             android:id="@+id/toWorkoutItem"
             app:destination="@id/workoutItemFragment" />
+        <action
+            android:id="@+id/toImageFrag"
+            app:destination="@id/image" />
+
 
     </fragment>
 
+    <fragment
+        android:id="@+id/image"
+        android:name="com.example.appehb.ui.imageFragment"
+        tools:layout="@layout/fragment_img"
+        />
     <fragment
         android:id="@+id/addWorkout"
         android:label="@string/add_workout"
