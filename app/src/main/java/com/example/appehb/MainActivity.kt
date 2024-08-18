@@ -1,16 +1,21 @@
 package com.example.appehb
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.appehb.database.AppDb
+import com.example.appehb.database.repository.ExerciseRepository
+import com.example.appehb.database.repository.LogRepository
+import com.example.appehb.database.repository.SetRepository
 import com.example.appehb.database.repository.WorkoutRepository
 import com.example.appehb.databinding.ActivityMainBinding
+import com.example.appehb.ui.exercise.ExerciseViewModel
+import com.example.appehb.ui.exercise.ExerciseViewModelProviderFactory
+import com.example.appehb.ui.log.LogViewModel
+import com.example.appehb.ui.log.LogViewModelProviderFactory
+import com.example.appehb.ui.set.SetViewModel
+import com.example.appehb.ui.set.SetViewModelProvider
 import com.example.appehb.ui.workout.WorkoutViewModel
 import com.example.appehb.ui.workout.WorkoutViewModelProviderFactory
 
@@ -18,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var workoutViewModel: WorkoutViewModel
+    lateinit var exerciseViewModel: ExerciseViewModel
+    lateinit var logViewModel: LogViewModel
+    lateinit var setViewModel: SetViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +43,11 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)*/
+
         initViewModelWorkout()
+        initViewModelExercise()
+        initViewModelLog()
+        initViewModelSet()
     }
 
     private fun initViewModelWorkout() {
@@ -50,5 +62,47 @@ class MainActivity : AppCompatActivity() {
             this,
             viewModelProviderFactory,
         )[WorkoutViewModel::class.java]
+    }
+
+    private fun initViewModelExercise() {
+        val exerciseRepository = ExerciseRepository(AppDb(this))
+
+        val viewModelProviderFactory =
+            ExerciseViewModelProviderFactory(
+                application, exerciseRepository
+            )
+
+        exerciseViewModel = ViewModelProvider(
+            this,
+            viewModelProviderFactory,
+        )[ExerciseViewModel::class.java]
+    }
+
+    private fun initViewModelLog() {
+        val logRepository = LogRepository(AppDb(this))
+
+        val viewModelProviderFactory =
+            LogViewModelProviderFactory(
+                application, logRepository
+            )
+
+        logViewModel = ViewModelProvider(
+            this,
+            viewModelProviderFactory,
+        )[LogViewModel::class.java]
+    }
+
+    private fun initViewModelSet() {
+        val setRepository = SetRepository(AppDb(this))
+
+        val viewModelProviderFactory =
+            SetViewModelProvider(
+                application, setRepository
+            )
+
+        setViewModel = ViewModelProvider(
+            this,
+            viewModelProviderFactory,
+        )[SetViewModel::class.java]
     }
 }
