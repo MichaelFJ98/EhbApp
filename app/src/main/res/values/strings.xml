@@ -5,4 +5,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_workout">Workout</string>
     <string name="add_exercise">Add exercise</string>
+    <string name="add_workout">Add workout</string>
 </resources>

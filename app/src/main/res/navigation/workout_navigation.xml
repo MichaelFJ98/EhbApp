@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/workout_navigation"
     app:startDestination="@+id/lvWorkout">
 
     <fragment
@@ -13,21 +13,42 @@
 
         <action
             android:id="@+id/fabAddWorkout"
+            app:destination="@id/addWorkout" />
+
+        <action
+            android:id="@+id/toWorkoutItem"
             app:destination="@id/workoutItemFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addWorkout"
+        android:label="@string/add_workout"
+        tools:layout="@layout/add_workout_fragment" >
+        <action
+            android:id="@+id/button_save_workout"
+            app:destination="@id/lvWorkout" />
     </fragment>
 
     <fragment
         android:id="@+id/workoutItemFragment"
+        android:name="com.example.appehb.ui.workout.fragment.WorkoutFragment"
         android:label="@string/title_workout"
         tools:layout="@layout/workout_item_fragment" >
         <action
             android:id="@+id/fabAddExercise"
             app:destination="@id/addExerciseFragment" />
+
+        <argument
+            android:name="workout"
+            app:argType="com.example.appehb.entity.Workout"
+            app:nullable="false"/>
     </fragment>
 
     <fragment
         android:id="@+id/addExerciseFragment"
         android:label="@string/add_exercise"
+        android:name="com.example.appehb.ui.exercise.fragment.AddExerciseFragment"
         tools:layout="@layout/add_exercise_fragment" >
         <action
             android:id="@+id/fabAddExercise"

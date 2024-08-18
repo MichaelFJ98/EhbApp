@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.appehb.MainActivity
 import com.example.appehb.R
@@ -33,12 +35,13 @@ class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
         super.onViewCreated(view, savedInstanceState)
         workoutViewModel = (activity as MainActivity).workoutViewModel
         setUpRecyclerView()
+
     }
 
     private fun setUpRecyclerView(){
         workoutAdapter = WorkoutAdapter()
 
-        binding.recyclerView.apply {
+        binding.recyclerViewLvWorkout.apply {
             layoutManager = StaggeredGridLayoutManager(
                 2,
                 StaggeredGridLayoutManager.VERTICAL
@@ -48,20 +51,20 @@ class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
         }
 
         activity?.let {
-            workoutViewModel.getWorkouts().observe(viewLifecycleOwner, { workout ->
+            workoutViewModel.getWorkouts().observe(viewLifecycleOwner) { workout ->
                 workoutAdapter.differ.submitList(workout)
                 updateUI(workout)
-            })
+            }
         }
     }
 
     private fun updateUI(workouts: List<Workout>) {
         if(workouts.isNotEmpty()) {
-            binding.lvWorkout.visibility = View.GONE
-            binding.recyclerView.visibility = View.VISIBLE
+            binding.noWorkoutsText.visibility = View.GONE
+            binding.recyclerViewLvWorkout.visibility = View.VISIBLE
         } else {
-            binding.lvWorkout.visibility = View.VISIBLE
-            binding.recyclerView.visibility = View.GONE
+            binding.noWorkoutsText.visibility = View.VISIBLE
+            binding.recyclerViewLvWorkout.visibility = View.GONE
         }
     }
 

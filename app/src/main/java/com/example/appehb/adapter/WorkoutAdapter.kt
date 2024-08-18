@@ -2,12 +2,15 @@ package com.example.appehb.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appehb.entity.Workout
 import com.example.appehb.databinding.WorkoutLayoutAdapterBinding
+import com.example.appehb.ui.workout.fragment.WorkoutFragment
 import com.example.appehb.ui.workout.fragment.WorkoutListFragmentDirections
 
 class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> () {
@@ -42,8 +45,9 @@ class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> ()
         holder.itemBinding.tvWorkoutTitle.text = currentWorkout.name
 
         holder.itemView.setOnClickListener { view ->
-            val direction = WorkoutListFragmentDirections.fabAddWorkout()
+            val direction = WorkoutListFragmentDirections.toWorkoutItem(currentWorkout)
             view.findNavController().navigate(direction)
+
         }
     }
 
