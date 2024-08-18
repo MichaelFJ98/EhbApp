@@ -2,12 +2,9 @@ package com.example.appehb.ui.workout
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-
 import androidx.lifecycle.viewModelScope
-import com.example.appehb.database.AppDb
 import com.example.appehb.database.repository.WorkoutRepository
 import com.example.appehb.entity.Workout
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 
@@ -39,8 +36,6 @@ class WorkoutViewModel(
 
     fun getExercisesForWorkout(id: Int) =
         workoutRepository.getExercisesForWorkout(id)
-
-
 
 
 }

@@ -7,7 +7,7 @@ import com.example.appehb.database.repository.ExerciseRepository
 import com.example.appehb.entity.Exercise
 import kotlinx.coroutines.launch
 
-class ExerciseViewModel (
+class ExerciseViewModel(
     val app: Application,
     private val exerciseRepository: ExerciseRepository
 ) : AndroidViewModel(app) {
@@ -17,16 +17,19 @@ class ExerciseViewModel (
             exerciseRepository.insertExercise(exercise)
         }
     }
+
     fun updateExercise(exercise: Exercise) {
         viewModelScope.launch {
             exerciseRepository.updateExercise(exercise)
         }
     }
-    fun deleteExercise(exercise: Exercise){
-        viewModelScope.launch{
+
+    fun deleteExercise(exercise: Exercise) {
+        viewModelScope.launch {
             exerciseRepository.deleteExercise(exercise)
         }
     }
+
     fun getSetsForExercise(id: Int) =
         exerciseRepository.getSetsForExercise(id)
 }

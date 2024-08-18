@@ -1,10 +1,7 @@
 package com.example.appehb.database.repository
 
-import androidx.annotation.WorkerThread
-import com.example.appehb.dao.WorkoutDao
 import com.example.appehb.database.AppDb
 import com.example.appehb.entity.Workout
-import kotlinx.coroutines.flow.Flow
 
 class WorkoutRepository(private val db: AppDb) {
 
@@ -22,6 +19,7 @@ class WorkoutRepository(private val db: AppDb) {
 
     fun getWorkout(id: Int) =
         db.workoutDao().getWorkoutById(id)
+
     fun getExercisesForWorkout(id: Int) =
         db.workoutDao().getExercisesForWorkout(id)
 

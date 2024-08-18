@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appehb.database.repository.SetRepository
 
-class SetViewModelProvider (
+class SetViewModelProvider(
     val app: Application,
     private val setRepository: SetRepository
 ) : ViewModelProvider.Factory {

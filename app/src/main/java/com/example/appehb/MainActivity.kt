@@ -1,15 +1,9 @@
 package com.example.appehb
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -29,9 +23,6 @@ import com.example.appehb.ui.set.SetViewModelProvider
 import com.example.appehb.ui.workout.WorkoutViewModel
 import com.example.appehb.ui.workout.WorkoutViewModelProviderFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_host) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_host) as NavHostFragment
         val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
@@ -123,7 +115,10 @@ class MainActivity : AppCompatActivity() {
         )[SetViewModel::class.java]
     }
 
-    private fun bottomNavItemChangeListener(navView: BottomNavigationView, navController: NavController) {
+    private fun bottomNavItemChangeListener(
+        navView: BottomNavigationView,
+        navController: NavController
+    ) {
         navView.setOnItemSelectedListener { item ->
             if (item.itemId != navView.selectedItemId) {
                 navController.popBackStack(item.itemId, inclusive = true, saveState = false)

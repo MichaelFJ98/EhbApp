@@ -47,10 +47,10 @@ class EditExerciseFragment : Fragment(R.layout.edit_exercise_fragment) {
         exerciseViewModel = (activity as MainActivity).exerciseViewModel
 
         binding.buttonSaveExercise.setOnClickListener {
-            val exerciseName  = binding.inputExerciseName.text.toString().trim()
+            val exerciseName = binding.inputExerciseName.text.toString().trim()
             val exerciseSets = binding.inputNumberOfSets.text.toString().trim()
 
-            if(exerciseName.isNotEmpty() && exerciseSets.isNotEmpty()) {
+            if (exerciseName.isNotEmpty() && exerciseSets.isNotEmpty()) {
                 exerciseViewModel.updateExercise(
                     Exercise(
                         currentExercise.id,
@@ -61,7 +61,7 @@ class EditExerciseFragment : Fragment(R.layout.edit_exercise_fragment) {
                 )
 
                 view.findNavController().navigateUp()
-            } else{
+            } else {
                 binding.inputExerciseName.error = "Please fill out this field"
                 binding.inputNumberOfSets.error = "Please fill out this field"
             }

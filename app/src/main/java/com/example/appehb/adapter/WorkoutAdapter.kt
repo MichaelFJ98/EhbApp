@@ -2,20 +2,17 @@ package com.example.appehb.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appehb.entity.Workout
 import com.example.appehb.databinding.WorkoutLayoutAdapterBinding
-import com.example.appehb.ui.workout.fragment.WorkoutFragment
+import com.example.appehb.entity.Workout
 import com.example.appehb.ui.workout.fragment.WorkoutListFragmentDirections
 
-class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> () {
+class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
     class WorkoutViewHolder(val itemBinding: WorkoutLayoutAdapterBinding) :
-            RecyclerView.ViewHolder(itemBinding.root)
+        RecyclerView.ViewHolder(itemBinding.root)
 
     private val differCallback =
         object : DiffUtil.ItemCallback<Workout>() {

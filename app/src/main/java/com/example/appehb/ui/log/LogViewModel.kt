@@ -7,10 +7,10 @@ import com.example.appehb.database.repository.LogRepository
 import com.example.appehb.entity.Log
 import kotlinx.coroutines.launch
 
-class LogViewModel (
+class LogViewModel(
     app: Application,
     private val logRepository: LogRepository
-) : AndroidViewModel(app){
+) : AndroidViewModel(app) {
     fun insertLog(log: Log) =
         viewModelScope.launch {
             logRepository.insertLog(log)

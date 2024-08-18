@@ -12,7 +12,7 @@ import com.example.appehb.databinding.AddWorkoutFragmentBinding
 import com.example.appehb.entity.Workout
 import com.example.appehb.ui.workout.WorkoutViewModel
 
-class AddWorkoutFragment :  Fragment(R.layout.add_workout_fragment) {
+class AddWorkoutFragment : Fragment(R.layout.add_workout_fragment) {
     private var _binding: AddWorkoutFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -37,19 +37,19 @@ class AddWorkoutFragment :  Fragment(R.layout.add_workout_fragment) {
         workoutViewModel = (activity as MainActivity).workoutViewModel
 
         binding.buttonSaveWorkout.setOnClickListener {
-            val workoutName  = binding.inputWorkoutName.text.toString().trim()
+            val workoutName = binding.inputWorkoutName.text.toString().trim()
 
-            if(workoutName.isNotEmpty()) {
+            if (workoutName.isNotEmpty()) {
 
-                    workoutViewModel.insertWorkout(
-                        Workout(
-                            null,
-                            workoutName
-                        )
+                workoutViewModel.insertWorkout(
+                    Workout(
+                        null,
+                        workoutName
                     )
+                )
 
                 view.findNavController().navigateUp()
-            } else{
+            } else {
                 binding.inputWorkoutName.error = "Please fill out this field"
             }
         }

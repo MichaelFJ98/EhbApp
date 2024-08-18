@@ -3,7 +3,7 @@ package com.example.appehb.database.repository
 import com.example.appehb.database.AppDb
 import com.example.appehb.entity.Log
 
-class LogRepository (private val db: AppDb) {
+class LogRepository(private val db: AppDb) {
 
     suspend fun insertLog(log: Log) =
         db.logDao().insert(log)

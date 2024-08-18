@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.appehb.MainActivity
@@ -43,7 +41,7 @@ class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
 
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         workoutAdapter = WorkoutAdapter()
 
         binding.recyclerViewLvWorkout.apply {
@@ -64,7 +62,7 @@ class WorkoutListFragment : Fragment(R.layout.workout_list_fragment) {
     }
 
     private fun updateUI(workouts: List<Workout>) {
-        if(workouts.isNotEmpty()) {
+        if (workouts.isNotEmpty()) {
             binding.noWorkoutsText.visibility = View.GONE
             binding.recyclerViewLvWorkout.visibility = View.VISIBLE
         } else {

@@ -9,16 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
-import com.example.appehb.MainActivity
 import com.example.appehb.R
-import com.example.appehb.databinding.EditExerciseFragmentBinding
 import com.example.appehb.databinding.FragmentImgBinding
-import com.example.appehb.entity.Exercise
-import com.example.appehb.entity.Workout
-import com.example.appehb.ui.exercise.ExerciseViewModel
-import com.example.appehb.ui.exercise.fragment.AddExerciseFragmentArgs
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -55,6 +47,7 @@ class imageFragment : Fragment(R.layout.fragment_img) {
             }
         }.start()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

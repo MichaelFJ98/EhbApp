@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.appehb.MainActivity
 import com.example.appehb.R
 import com.example.appehb.adapter.ExerciseAdapter
-
-import com.example.appehb.adapter.WorkoutAdapter
 import com.example.appehb.databinding.WorkoutItemFragmentBinding
 import com.example.appehb.entity.Exercise
 import com.example.appehb.entity.Workout
 import com.example.appehb.ui.workout.WorkoutViewModel
 
-class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
+class WorkoutFragment : Fragment(R.layout.workout_item_fragment) {
     private var _binding: WorkoutItemFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -59,7 +57,7 @@ class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
         }
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         exerciseAdapter = ExerciseAdapter()
 
         binding.recyclerViewExercises.apply {
@@ -82,7 +80,7 @@ class WorkoutFragment : Fragment(R.layout.workout_item_fragment){
     }
 
     private fun updateUI(exercises: List<Exercise>) {
-        if(exercises.isNotEmpty()) {
+        if (exercises.isNotEmpty()) {
             binding.noExercisesText.visibility = View.GONE
             binding.recyclerViewExercises.visibility = View.VISIBLE
         } else {

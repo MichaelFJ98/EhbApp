@@ -14,10 +14,13 @@ import com.example.appehb.entity.relation.ExerciseWithSets
 interface ExerciseDao {
     @Insert
     suspend fun insert(exercise: Exercise)
+
     @Update
     suspend fun update(exercise: Exercise)
+
     @Delete
     suspend fun delete(exercise: Exercise)
+
     @Transaction
     @Query("SELECT * FROM exercise WHERE id = :exerciseId")
     fun getAllSetsForExercise(exerciseId: Int): LiveData<List<ExerciseWithSets>>

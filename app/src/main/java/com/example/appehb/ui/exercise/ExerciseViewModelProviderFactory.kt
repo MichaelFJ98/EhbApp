@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appehb.database.repository.ExerciseRepository
 
-class ExerciseViewModelProviderFactory (
+class ExerciseViewModelProviderFactory(
     val app: Application,
     private val exerciseRepository: ExerciseRepository
 ) : ViewModelProvider.Factory {

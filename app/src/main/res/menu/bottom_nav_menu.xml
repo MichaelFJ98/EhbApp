@@ -4,13 +4,12 @@
     <item
         android:id="@+id/lvWorkout"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_workouts"
-        />
+        android:title="@string/title_workouts" />
 
     <item
         android:id="@+id/image"
-        android:icon="@drawable/ic_dashboard_black_24dp"
         android:actionLayout="@layout/fragment_img"
+        android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/image" />
 
 </menu>

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.appehb.database.repository.LogRepository
 
-class LogViewModelProviderFactory (
+class LogViewModelProviderFactory(
     val app: Application,
     private val logRepository: LogRepository
 ) : ViewModelProvider.Factory {

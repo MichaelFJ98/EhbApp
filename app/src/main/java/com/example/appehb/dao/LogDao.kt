@@ -15,12 +15,16 @@ import com.example.appehb.entity.relation.LogWithSets
 interface LogDao {
     @Insert
     suspend fun insert(log: Log)
+
     @Update
     suspend fun update(log: Log)
+
     @Delete
     suspend fun delete(log: Log)
+
     @Query("SELECT * FROM log WHERE id = :id")
     fun getLogById(id: Int): LiveData<Log>
+
     @Transaction
     @Query("SELECT * FROM log WHERE id = :id")
     fun getSetsByLogId(id: Int): LiveData<List<LogWithSets>>

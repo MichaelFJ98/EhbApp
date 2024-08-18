@@ -10,9 +10,9 @@ import com.example.appehb.databinding.ExerciseLayoutAdapterBinding
 import com.example.appehb.entity.Exercise
 import com.example.appehb.ui.workout.fragment.WorkoutFragmentDirections
 
-class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder> () {
+class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
     class ExerciseViewHolder(val itemBinding: ExerciseLayoutAdapterBinding) :
-            RecyclerView.ViewHolder(itemBinding.root)
+        RecyclerView.ViewHolder(itemBinding.root)
 
     private val differCallback =
         object : DiffUtil.ItemCallback<Exercise>() {
@@ -33,6 +33,7 @@ class ExerciseAdapter : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>
             )
         )
     }
+
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val currentExercise = differ.currentList[position]
 

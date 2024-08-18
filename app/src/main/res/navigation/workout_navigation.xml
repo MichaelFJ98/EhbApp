@@ -23,13 +23,12 @@
     <fragment
         android:id="@+id/image"
         android:name="com.example.appehb.ui.imageFragment"
-        tools:layout="@layout/fragment_img"
-        />
+        tools:layout="@layout/fragment_img" />
     <fragment
         android:id="@+id/addWorkout"
-        android:label="@string/add_workout"
         android:name="com.example.appehb.ui.workout.fragment.AddWorkoutFragment"
-        tools:layout="@layout/add_workout_fragment" >
+        android:label="@string/add_workout"
+        tools:layout="@layout/add_workout_fragment">
         <action
             android:id="@+id/button_save_workout"
             app:destination="@id/addWorkout" />
@@ -39,7 +38,7 @@
         android:id="@+id/workoutItemFragment"
         android:name="com.example.appehb.ui.workout.fragment.WorkoutFragment"
         android:label="@string/title_workout"
-        tools:layout="@layout/workout_item_fragment" >
+        tools:layout="@layout/workout_item_fragment">
         <action
             android:id="@+id/fabAddExercise"
             app:destination="@id/addExerciseFragment" />
@@ -50,14 +49,14 @@
         <argument
             android:name="workout"
             app:argType="com.example.appehb.entity.Workout"
-            app:nullable="false"/>
+            app:nullable="false" />
     </fragment>
 
     <fragment
         android:id="@+id/addExerciseFragment"
-        android:label="@string/add_exercise"
         android:name="com.example.appehb.ui.exercise.fragment.AddExerciseFragment"
-        tools:layout="@layout/add_exercise_fragment" >
+        android:label="@string/add_exercise"
+        tools:layout="@layout/add_exercise_fragment">
         <action
             android:id="@+id/fabAddExercise"
             app:destination="@id/workoutItemFragment" />
@@ -65,20 +64,20 @@
         <argument
             android:name="workout"
             app:argType="com.example.appehb.entity.Workout"
-            app:nullable="false"/>
+            app:nullable="false" />
     </fragment>
 
     <fragment
         android:id="@+id/editExercise"
-        android:label="@string/edit_exercise"
         android:name="com.example.appehb.ui.exercise.fragment.EditExerciseFragment"
-        tools:layout="@layout/edit_exercise_fragment" >
+        android:label="@string/edit_exercise"
+        tools:layout="@layout/edit_exercise_fragment">
         <action
             android:id="@+id/fabAddExercise"
             app:destination="@id/workoutItemFragment" />
         <argument
             android:name="exercise"
             app:argType="com.example.appehb.entity.Exercise"
-            app:nullable="false"/>
+            app:nullable="false" />
     </fragment>
 </navigation>

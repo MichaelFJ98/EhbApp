@@ -3,7 +3,7 @@ package com.example.appehb.database.repository
 import com.example.appehb.database.AppDb
 import com.example.appehb.entity.Exercise
 
-class ExerciseRepository (private val db: AppDb) {
+class ExerciseRepository(private val db: AppDb) {
     suspend fun insertExercise(exercise: Exercise) =
         db.exerciseDao().insert(exercise)
 
